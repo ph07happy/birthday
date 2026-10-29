@@ -22,8 +22,12 @@ An interactive, cinematic birthday surprise website inspired by the visual atmos
    - Background polling (default 30 seconds) automatically pulls newly submitted Google Form responses without rebuilding the frontend.
    - Visibility-aware: pauses polling when the browser tab is hidden and instantly refreshes upon refocus.
    - Displays a *"NEW MEMORIES UNLOCKED!"* notification banner.
-5. **Spider-Verse Comic Aesthetics**:
-   - Ben-Day halftone dot textures, speed lines, chromatic aberration RGB split text, dynamic comic speech bubbles, and custom sound effects using the Web Audio API (100% royalty-free).
+5. **Cinematic Soundtrack & Audio Controls**:
+   - Integrates the iconic Spider-Verse anthem: ***Sunflower* by Post Malone & Swae Lee** ([`public/audio/sunflower.mp3`](file:///d:/downloads/spider_verse/public/audio/sunflower.mp3)).
+   - Automatically kicks in when the visitor clicks **"ENTER THE UNIVERSE"** (complying with modern browser autoplay policies).
+   - Sticky comic equalizer button in the Navbar with animated visualizer bars, allowing one-click play, pause, and mute.
+6. **Spider-Verse Comic Aesthetics**:
+   - Ben-Day halftone dot textures, speed lines, chromatic aberration RGB split text, dynamic comic speech bubbles, and custom sound effects.
    - Fully supports `prefers-reduced-motion` and mobile viewports.
 
 ---
