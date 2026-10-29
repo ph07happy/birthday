@@ -2,10 +2,22 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import ComicButton from '../components/ComicButton';
+import { useBackgroundMusic } from '../context/AudioContext';
 import { siteConfig } from '../config/siteConfig';
 import './HeroSection.css';
 
 export default function HeroSection({ onEnterUniverse }) {
+  const { playMusic, isPlaying } = useBackgroundMusic();
+
+  const handleEnter = () => {
+    if (!isPlaying) {
+      playMusic();
+    }
+    if (onEnterUniverse) {
+      onEnterUniverse();
+    }
+  };
+
   return (
     <section className="spider-hero-root">
       <div className="spider-container hero-container">
@@ -47,7 +59,7 @@ export default function HeroSection({ onEnterUniverse }) {
           <ComicButton
             variant="cyan"
             size="lg"
-            onClick={onEnterUniverse}
+            onClick={handleEnter}
             icon={<Sparkles size={22} />}
           >
             ENTER THE UNIVERSE <ArrowDown size={22} />

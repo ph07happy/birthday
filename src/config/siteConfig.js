@@ -6,6 +6,7 @@
  * - Target birthday date & ISO timestamp with timezone offset
  * - Live update polling interval
  * - Demo data toggle (set to false for production to display only real Google Form responses)
+ * - Background music preferences
  */
 export const siteConfig = {
   // Birthday person's display name
@@ -32,4 +33,14 @@ export const siteConfig = {
 
   // Subtitle / theme quote
   themeQuote: "ANOTHER YEAR. ANOTHER UNIVERSE. INFINITE POSSIBILITIES.",
+
+  // Background Soundtrack (Sunflower by Post Malone & Swae Lee from Spider-Man: Into the Spider-Verse)
+  backgroundMusic: {
+    enabled: true,
+    title: "Sunflower",
+    artist: "Post Malone & Swae Lee",
+    src: "audio/sunflower.mp3",
+    defaultVolume: 0.45,
+    autoPlayOnInteraction: true,
+  },
 };

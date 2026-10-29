@@ -1,50 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Volume2, VolumeX, Sparkles, Lock, RefreshCw, Flame } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, Lock, RefreshCw, Music } from 'lucide-react';
+import { useBackgroundMusic } from '../context/AudioContext';
 import { siteConfig } from '../config/siteConfig';
 import './Navbar.css';
 
-// Procedural audio synthesizer using Web Audio API (100% royalty-free & zero external audio files)
-let audioCtx = null;
-function playWebSwingChime() {
-  try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    if (!audioCtx) audioCtx = new AudioContext();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
-    osc.frequency.exponentialRampToValueAtTime(1320, audioCtx.currentTime + 0.35);
-
-    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.45);
-  } catch (e) {
-    // Audio context not allowed or unsupported
-  }
-}
-
 export default function Navbar({ isUnlocked, onRefresh, newResponsesCount = 0 }) {
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const { isPlaying, togglePlay, trackInfo } = useBackgroundMusic();
   const location = useLocation();
-
-  const toggleSound = () => {
-    const next = !soundEnabled;
-    setSoundEnabled(next);
-    if (next) {
-      playWebSwingChime();
-    }
-  };
 
   return (
     <header className="spider-navbar-root">
@@ -72,14 +35,38 @@ export default function Navbar({ isUnlocked, onRefresh, newResponsesCount = 0 })
 
         {/* Actions */}
         <div className="navbar-actions">
+          {/* Background Music Player: Sunflower */}
+          <button
+            type="button"
+            onClick={togglePlay}
+            className={`navbar-music-btn ${isPlaying ? 'playing' : ''}`}
+            title={isPlaying ? `Pause ${trackInfo.title}` : `Play ${trackInfo.title} (${trackInfo.artist})`}
+            aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
+          >
+            {isPlaying ? (
+              <>
+                <div className="music-equalizer" aria-hidden="true">
+                  <span className="eq-bar bar-1" />
+                  <span className="eq-bar bar-2" />
+                  <span className="eq-bar bar-3" />
+                </div>
+                <span className="music-title-pill">SUNFLOWER</span>
+                <Volume2 size={16} className="music-status-icon" />
+              </>
+            ) : (
+              <>
+                <Music size={15} />
+                <span className="music-title-pill">SUNFLOWER</span>
+                <VolumeX size={15} className="music-status-icon muted" />
+              </>
+            )}
+          </button>
+
           {/* Refresh Action for live updates */}
           {isUnlocked && onRefresh && (
             <button
               type="button"
-              onClick={() => {
-                onRefresh();
-                if (soundEnabled) playWebSwingChime();
-              }}
+              onClick={onRefresh}
               className="navbar-icon-btn"
               title="Check for new responses"
             >
@@ -89,16 +76,6 @@ export default function Navbar({ isUnlocked, onRefresh, newResponsesCount = 0 })
               )}
             </button>
           )}
-
-          {/* Sound Toggle */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            className={`navbar-icon-btn ${soundEnabled ? 'active' : ''}`}
-            title={soundEnabled ? 'Mute comic sound FX' : 'Enable comic sound FX'}
-          >
-            {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-          </button>
 
           {/* Navigation Links */}
           <nav className="navbar-nav-links">

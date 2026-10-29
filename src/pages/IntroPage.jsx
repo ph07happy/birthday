@@ -1,15 +1,20 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowRight, Compass } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import ComicButton from '../components/ComicButton';
+import { useBackgroundMusic } from '../context/AudioContext';
 import { siteConfig } from '../config/siteConfig';
 import './IntroPage.css';
 
 export default function IntroPage({ onEnter }) {
   const navigate = useNavigate();
+  const { playMusic, isPlaying } = useBackgroundMusic();
 
   const handleEnter = () => {
+    if (!isPlaying) {
+      playMusic();
+    }
     if (onEnter) onEnter();
     navigate('/');
   };

@@ -5,6 +5,7 @@ import WebOverlay from './animations/WebOverlay';
 import ParticleField from './animations/ParticleField';
 import Navbar from './components/Navbar';
 import AppRouter from './routes/AppRouter';
+import { AudioProvider } from './context/AudioContext';
 import { useBirthdayReveal } from './hooks/useBirthdayReveal';
 import { useBirthdayMessages } from './hooks/useBirthdayMessages';
 import './styles/global.css';
@@ -15,23 +16,25 @@ export default function App() {
 
   return (
     <HashRouter>
-      <div className="spider-app-wrapper">
-        <ComicBackground>
-          <WebOverlay />
-          <ParticleField />
-          <Navbar
-            isUnlocked={revealState.isUnlocked}
-            onRefresh={messagesState.refreshMessages}
-            newResponsesCount={messagesState.newResponsesCount}
-          />
-          <main className="spider-main-content">
-            <AppRouter
-              revealState={revealState}
-              messagesState={messagesState}
+      <AudioProvider>
+        <div className="spider-app-wrapper">
+          <ComicBackground>
+            <WebOverlay />
+            <ParticleField />
+            <Navbar
+              isUnlocked={revealState.isUnlocked}
+              onRefresh={messagesState.refreshMessages}
+              newResponsesCount={messagesState.newResponsesCount}
             />
-          </main>
-        </ComicBackground>
-      </div>
+            <main className="spider-main-content">
+              <AppRouter
+                revealState={revealState}
+                messagesState={messagesState}
+              />
+            </main>
+          </ComicBackground>
+        </div>
+      </AudioProvider>
     </HashRouter>
   );
 }

@@ -72,6 +72,80 @@
   gap: 0.85rem;
 }
 
+/* Background Music Player Control */
+.navbar-music-btn {
+  background: var(--spider-dark-panel);
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  color: var(--spider-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.navbar-music-btn:hover {
+  background: var(--spider-dark-elevated);
+  color: var(--spider-cyan);
+  border-color: var(--spider-cyan);
+  transform: translateY(-2px);
+}
+
+.navbar-music-btn.playing {
+  background: rgba(255, 230, 0, 0.12);
+  border-color: var(--spider-yellow);
+  color: var(--spider-yellow);
+  box-shadow: 2px 2px 0px #000000, 0 0 12px rgba(255, 230, 0, 0.3);
+}
+
+.music-title-pill {
+  font-family: var(--font-comic);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.music-status-icon.muted {
+  opacity: 0.6;
+}
+
+/* Equalizer Dancing Bars */
+.music-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.eq-bar {
+  width: 3px;
+  background: var(--spider-yellow);
+  border-radius: 1px;
+}
+
+.bar-1 {
+  height: 60%;
+  animation: eq-bounce 0.8s infinite ease-in-out alternate;
+}
+
+.bar-2 {
+  height: 100%;
+  animation: eq-bounce 0.6s infinite ease-in-out alternate 0.2s;
+}
+
+.bar-3 {
+  height: 40%;
+  animation: eq-bounce 0.9s infinite ease-in-out alternate 0.4s;
+}
+
+@keyframes eq-bounce {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
 .navbar-icon-btn {
   position: relative;
   background: var(--spider-dark-panel);
@@ -146,6 +220,9 @@
 
 @media (max-width: 640px) {
   .navbar-status-badge {
+    display: none;
+  }
+  .navbar-music-btn .music-title-pill {
     display: none;
   }
 }
