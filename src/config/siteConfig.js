@@ -29,18 +29,18 @@ export const siteConfig = {
   showDemoData: true,
 
   // Browser tab title and brand heading
-  siteTitle: "Into Ronit"s Birthday- Verse",
+  siteTitle: "Into Ronit's Birthday- Verse",
 
-// Subtitle / theme quote
-themeQuote: "ANOTHER YEAR. ANOTHER UNIVERSE. INFINITE POSSIBILITIES.",
+  // Subtitle / theme quote
+  themeQuote: "ANOTHER YEAR. ANOTHER UNIVERSE. INFINITE POSSIBILITIES.",
 
   // Background Soundtrack (Sunflower by Post Malone & Swae Lee from Spider-Man: Into the Spider-Verse)
   backgroundMusic: {
-  enabled: true,
+    enabled: true,
     title: "Sunflower",
-      artist: "Post Malone & Swae Lee",
-        src: "audio/sunflower.mp3",
-          defaultVolume: 0.45,
-            autoPlayOnInteraction: true,
+    artist: "Post Malone & Swae Lee",
+    src: "audio/sunflower.mp3",
+    defaultVolume: 0.45,
+    autoPlayOnInteraction: true,
   },
 };
