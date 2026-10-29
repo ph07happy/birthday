@@ -10,7 +10,7 @@
  */
 export const siteConfig = {
   // Birthday person's display name
-  birthdayName: "happy",
+  birthdayName: "Ronit",
 
   // Target birthday date & time (ISO 8601 with offset, e.g. +05:30)
   // Set to a future date to test countdown & moving button (e.g. "2026-11-15T00:00:00+05:30")
@@ -29,7 +29,7 @@ export const siteConfig = {
   showDemoData: true,
 
   // Browser tab title and brand heading
-  siteTitle: "Into Birthday-Verse",
+  siteTitle: "Into RonitBirthday-Verse",
 
   // Subtitle / theme quote
   themeQuote: "ANOTHER YEAR. ANOTHER UNIVERSE. INFINITE POSSIBILITIES.",
