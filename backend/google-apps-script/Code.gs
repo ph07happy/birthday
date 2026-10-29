@@ -2,25 +2,28 @@
  * GOOGLE APPS SCRIPT BACKEND: SPIDER-VERSE BIRTHDAY API
  * 
  * Secure, cross-origin API serving submitted Google Form responses
- * from the linked Google Sheet to the Spider-Verse frontend.
+ * from your linked Google Sheet to the Spider-Verse website.
+ * 
+ * LINKED SPREADSHEET:
+ * https://docs.google.com/spreadsheets/d/1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw/edit?gid=665137629
  * 
  * EXACT THREE FORM FIELDS SUPPORTED:
- * 1. "message to"      -> Recipient name
- * 2. "message by"      -> Complete message and sender identification
- * 3. "upload pictures" -> One or more uploaded picture links
- * 
- * SERVER-SIDE ACCESS CONTROL:
- * Strict birthday reveal lock is enforced here. Real messages and pictures
- * will NEVER be returned before the configured BIRTHDAY_TIMESTAMP.
+ * 1. "message to"                          -> Recipient name
+ * 2. "message by"                          -> Complete message and sender identification
+ * 3. "upload pictures (in .jpg, .png)"     -> One or more uploaded picture links
  */
 
-// Central backend birthday configuration
-// Keep synchronized with src/config/siteConfig.js in the frontend!
 var CONFIG = {
-  // ISO 8601 target birthday timestamp with timezone offset
+  // Target birthday timestamp with timezone offset (keep synced with siteConfig.js)
   BIRTHDAY_TIMESTAMP: "2026-11-15T00:00:00+05:30",
 
-  // Sheet name where Google Form responses arrive (default is "Form Responses 1")
+  // Your linked Google Sheet ID
+  SPREADSHEET_ID: "1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw",
+
+  // Sheet tab GID
+  SHEET_GID: "665137629",
+
+  // Default Sheet tab name
   SHEET_NAME: "Form Responses 1",
 
   // Fallback ID prefix
@@ -150,7 +153,7 @@ function toDisplayableDriveUrl(rawUrl) {
 }
 
 /**
- * Parses and normalizes all responses from the active Google Sheet
+ * Parses and normalizes all responses from the Google Sheet
  */
 function readFormResponses() {
   var sheet = getTargetSheet();
@@ -170,10 +173,10 @@ function readFormResponses() {
     }
   }
 
-  // Find column indices for the exact three fields
+  // Find column indices matching form fields
   var colMessageTo = findColumnIndex(headerMap, ['messageto', 'to']);
   var colMessageBy = findColumnIndex(headerMap, ['messageby', 'by', 'message']);
-  var colUploadPictures = findColumnIndex(headerMap, ['uploadpictures', 'pictures', 'upload']);
+  var colUploadPictures = findColumnIndex(headerMap, ['uploadpicturesinjpgpng', 'uploadpictures', 'pictures', 'upload']);
   var colTimestamp = findColumnIndex(headerMap, ['timestamp']);
 
   var responses = [];
@@ -250,12 +253,25 @@ function findColumnIndex(headerMap, candidateKeys) {
  * Returns the target Google Sheet instance
  */
 function getTargetSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = null;
+
+  // Try opening by explicit ID first
+  if (CONFIG.SPREADSHEET_ID) {
+    try {
+      ss = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+    } catch (e) {
+      // Container-bound fallback
+    }
+  }
+
+  if (!ss) {
+    ss = SpreadsheetApp.getActiveSpreadsheet();
+  }
+
   if (!ss) return null;
 
   var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) {
-    // If not found by name, use the first sheet
     sheet = ss.getSheets()[0];
   }
   return sheet;

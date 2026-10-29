@@ -12,10 +12,23 @@
   pointer-events: none;
   z-index: var(--z-bg);
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px),
-    radial-gradient(rgba(0, 240, 255, 0.03) 1.5px, transparent 1.5px);
+    radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(0, 240, 255, 0.05) 1.5px, transparent 1.5px);
   background-size: 18px 18px, 28px 28px;
   background-position: 0 0, 9px 9px;
+  opacity: 0.9;
+}
+
+/* Luminous Web Mesh in Background */
+.comic-bg-root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-bg);
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.07) 0%, transparent 65%),
+    repeating-radial-gradient(circle at 10% 10%, transparent 0, transparent 40px, rgba(255, 255, 255, 0.035) 41px, transparent 42px);
   opacity: 0.85;
 }
 

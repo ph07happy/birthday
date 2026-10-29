@@ -1,17 +1,27 @@
 /**
- * Google Apps Script API Configuration
+ * Google Form & Google Apps Script API Configuration
  * 
- * Replace APPS_SCRIPT_DEPLOYMENT_URL with the Web App URL generated from your
- * Google Apps Script project (e.g., https://script.google.com/macros/s/.../exec).
+ * Connected to your Google Form response spreadsheet:
+ * https://docs.google.com/spreadsheets/d/1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw/edit?gid=665137629
  */
 export const apiConfig = {
-  // Google Apps Script Web App Deployment URL
-  // Paste your published deployment URL here:
+  // Google Spreadsheet ID (from your Google Form)
+  spreadsheetId: "1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw",
+
+  // Sheet tab GID
+  gid: "665137629",
+
+  // Direct Google Spreadsheet view URL
+  sheetUrl: "https://docs.google.com/spreadsheets/d/1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw/edit?gid=665137629",
+
+  // Google Apps Script Web App Deployment URL (optional server-side proxy)
+  // If deployed, paste your web app URL here:
   appsScriptUrl: "",
 
   // API Modes:
-  // 'auto'        -> Fetches from Apps Script endpoint if configured; uses demo data if showDemoData=true
-  // 'apps-script' -> Strictly requires Google Apps Script; errors out if unreachable
+  // 'auto'        -> Fetches live data from linked Google Sheet (or Apps Script if provided); falls back to demo data only if showDemoData=true
+  // 'sheets-live' -> Strictly fetches live from your linked Google Sheet
+  // 'apps-script' -> Strictly requires Google Apps Script Web App
   // 'demo'        -> Strictly uses local demo dataset (offline development)
   apiMode: "auto",
 
