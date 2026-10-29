@@ -11,10 +11,11 @@ Your Google Form response sheet columns:
 1. `Timestamp`
 2. `Email address`
 3. `message to` — Birthday recipient's name
-4. `message by` — Sender name and full birthday message as submitted
+4. `message by` — Sender name (who it is from)
 5. `upload pictures (in .jpg, .png)` — Uploaded Google Drive file links
+6. `message` — The actual birthday message content
 
-> Both the frontend and backend automatically normalize these header names to map `message to`, `message by`, and `upload pictures` seamlessly.
+> Both the frontend and backend automatically normalize these header names to map `message to`, `message by`, `message`, and `upload pictures` seamlessly.
 
 ---
 

@@ -5,12 +5,12 @@ import { extractFieldValue, isValidResponse } from '../utils/validation.js';
 import { normalizePictures } from '../utils/imageUtils.js';
 
 /**
- * Normalizes a raw submission item (from Google Apps Script or JSON payload)
- * into the standard application response schema:
+ * Normalizes a raw submission item into the standard application response schema:
  * {
  *   id: string,
- *   messageTo: string,
- *   messageBy: string,
+ *   messageTo: string,       // Recipient name
+ *   messageBy: string,       // Sender name
+ *   message: string,         // Message content
  *   pictures: Array<{ id, url, alt }>
  * }
  */
@@ -21,15 +21,35 @@ export function normalizeFormResponse(rawItem, index = 0) {
   const rawId = rawItem.id || rawItem.responseId || rawItem._id;
   const stableId = rawId ? String(rawId) : `response-${String(index + 1).padStart(3, '0')}`;
 
-  // Extract the exact 3 fields
-  const messageTo = extractFieldValue(rawItem, 'messageto') || rawItem.messageTo || 'Birthday Star';
-  const messageBy = extractFieldValue(rawItem, 'messageby') || rawItem.messageBy || '';
-  
-  // Extract picture field
+  // 1. Recipient: "message to"
+  const messageTo = 
+    extractFieldValue(rawItem, 'messageto') || 
+    rawItem.messageTo || 
+    'Birthday Star';
+
+  // 2. Sender: "message by"
+  const rawMessageBy = 
+    extractFieldValue(rawItem, 'messageby') || 
+    rawItem.messageBy || 
+    '';
+
+  // 3. Message Body: "message" (New specific field)
+  const rawMessage = 
+    extractFieldValue(rawItem, 'message') || 
+    rawItem.message || 
+    '';
+
+  // Determine final message content and sender
+  // If specific "message" field is provided, use it as the message body, and messageBy as sender
+  // If "message" is blank, fallback to messageBy (for backwards compatibility with older forms)
+  const messageContent = rawMessage ? rawMessage.trim() : (rawMessageBy ? rawMessageBy.trim() : '');
+  const senderName = rawMessageBy ? rawMessageBy.trim() : (rawMessage ? 'A Multiverse Friend' : '');
+
+  // 4. Picture field: "upload pictures (in .jpg, .png)" / "upload pictures"
   const rawPictures = 
+    extractFieldValue(rawItem, 'uploadpictures') ||
     rawItem.uploadPictures ||
     rawItem.uploadpictures ||
-    extractFieldValue(rawItem, 'uploadpictures') ||
     rawItem.pictures ||
     [];
 
@@ -38,7 +58,8 @@ export function normalizeFormResponse(rawItem, index = 0) {
   return {
     id: stableId,
     messageTo,
-    messageBy,
+    messageBy: senderName || 'A Multiverse Friend',
+    message: messageContent,
     pictures,
     timestamp: rawItem.timestamp || rawItem.Timestamp || new Date().toISOString(),
   };

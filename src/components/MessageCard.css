@@ -104,11 +104,17 @@
   flex: 1;
 }
 
+.card-header-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
 .card-recipient-header {
   display: flex;
   align-items: baseline;
   gap: 0.45rem;
-  margin-bottom: 0.65rem;
 }
 
 .card-to-label {
@@ -123,6 +129,31 @@
   color: var(--spider-white);
   letter-spacing: 0.04em;
   line-height: 1;
+}
+
+.card-sender-strip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15rem 0.55rem;
+  border-left: 2px solid var(--spider-yellow);
+  align-self: flex-start;
+  border-radius: 1px;
+}
+
+.card-by-label {
+  font-family: var(--font-comic);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--spider-yellow);
+}
+
+.card-sender-name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--spider-white);
 }
 
 .card-message-snippet {

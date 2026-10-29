@@ -6,15 +6,13 @@ import {
   ArrowRight,
   Grid,
   Lock,
-  UserCheck,
-  Calendar,
-  Share2,
+  User,
   Sparkles,
 } from 'lucide-react';
 import PhotoGallery from '../components/PhotoGallery';
 import ComicButton from '../components/ComicButton';
 import LoadingScreen from '../components/LoadingScreen';
-import { getMessageRoutePath } from '../utils/routeUtils';
+import { getMessageRoutePath } from '../utils/routeUtils.js';
 import './BirthdayMessagePage.css';
 
 export default function BirthdayMessagePage({
@@ -84,8 +82,12 @@ export default function BirthdayMessagePage({
     );
   }
 
-  const { messageTo, messageBy, pictures = [] } = response;
+  const { messageTo, messageBy, message, pictures = [] } = response;
   const { previous, next, currentIndex, total } = getAdjacent(id);
+
+  // Determine final message content and sender
+  const displayMessageText = message || messageBy || 'A heartfelt dispatch recorded from the Spider-Verse.';
+  const senderName = messageBy || 'Multiverse Ally';
 
   return (
     <div className="spider-container message-page-root">
@@ -111,13 +113,22 @@ export default function BirthdayMessagePage({
         transition={{ duration: 0.4 }}
         className="message-comic-panel-card"
       >
-        {/* Recipient & Meta Strip */}
+        {/* Recipient & Sender Header Strip */}
         <div className="message-header-strip">
-          <div className="message-to-badge">
-            <span className="meta-label">TO:</span>
-            <h1 className="message-recipient-name text-glitch">
-              {messageTo || 'Birthday Star'}
-            </h1>
+          <div className="message-parties-box">
+            <div className="message-to-badge">
+              <span className="meta-label">TO:</span>
+              <h1 className="message-recipient-name text-glitch">
+                {messageTo || 'Birthday Star'}
+              </h1>
+            </div>
+
+            {senderName && (
+              <div className="message-from-substrip">
+                <span className="meta-by-label">DISPATCHED BY:</span>
+                <span className="message-sender-name">{senderName}</span>
+              </div>
+            )}
           </div>
 
           <div className="message-badge-wrap">
@@ -125,14 +136,14 @@ export default function BirthdayMessagePage({
           </div>
         </div>
 
-        {/* Message Content: Submitted message by field */}
+        {/* Message Content: The submitted message field */}
         <div className="message-body-container">
           <div className="message-text-quote-box">
-            <p className="message-body-text">{messageBy}</p>
+            <p className="message-body-text">{displayMessageText}</p>
           </div>
         </div>
 
-        {/* Responsive Photo Gallery: ONE response = ALL photos displayed on this single page */}
+        {/* Responsive Photo Gallery: ONE response = ALL photos displayed together on this single page */}
         {pictures && pictures.length > 0 ? (
           <div className="message-photos-section">
             <div className="section-label-bar">
@@ -158,7 +169,9 @@ export default function BirthdayMessagePage({
             <ArrowLeft size={20} className="nav-arrow" />
             <div className="pagination-text-group">
               <span className="pagination-dir">PREVIOUS MESSAGE</span>
-              <span className="pagination-target-name">{previous.messageTo}</span>
+              <span className="pagination-target-name">
+                {previous.messageTo} {previous.messageBy ? `(from ${previous.messageBy})` : ''}
+              </span>
             </div>
           </button>
         ) : (
@@ -184,7 +197,9 @@ export default function BirthdayMessagePage({
           >
             <div className="pagination-text-group text-right">
               <span className="pagination-dir">NEXT MESSAGE</span>
-              <span className="pagination-target-name">{next.messageTo}</span>
+              <span className="pagination-target-name">
+                {next.messageTo} {next.messageBy ? `(from ${next.messageBy})` : ''}
+              </span>
             </div>
             <ArrowRight size={20} className="nav-arrow" />
           </button>

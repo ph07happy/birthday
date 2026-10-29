@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Image as ImageIcon, ArrowUpRight, MessageSquareQuote } from 'lucide-react';
-import { getMessageRoutePath } from '../utils/routeUtils';
-import { getFallbackImageSvg } from '../services/imageService';
+import { Image as ImageIcon, ArrowUpRight, MessageSquareQuote, User } from 'lucide-react';
+import { getMessageRoutePath } from '../utils/routeUtils.js';
+import { getFallbackImageSvg } from '../services/imageService.js';
 import './MessageCard.css';
 
 export default function MessageCard({ response, index = 0 }) {
   const [imgError, setImgError] = useState(false);
-  const { id, messageTo, messageBy, pictures = [] } = response;
+  const { id, messageTo, messageBy, message, pictures = [] } = response;
 
   const hasPictures = pictures.length > 0;
   const primaryPicture = hasPictures ? pictures[0] : null;
@@ -17,6 +17,10 @@ export default function MessageCard({ response, index = 0 }) {
   // Derive accent color rotation for comic variety
   const accents = ['cyan', 'red', 'yellow', 'pink'];
   const accent = accents[index % accents.length];
+
+  // The displayed message text
+  const displayMessage = message || messageBy || 'A heartfelt dispatch from across the Spider-Verse...';
+  const senderName = messageBy || 'Multiverse Ally';
 
   return (
     <motion.div
@@ -55,13 +59,24 @@ export default function MessageCard({ response, index = 0 }) {
 
         {/* Card Body */}
         <div className="card-content-body">
-          <div className="card-recipient-header">
-            <span className="card-to-label">TO:</span>
-            <span className="card-recipient-name">{messageTo || 'Birthday Star'}</span>
+          {/* Recipient & Sender Header */}
+          <div className="card-header-cluster">
+            <div className="card-recipient-header">
+              <span className="card-to-label">TO:</span>
+              <span className="card-recipient-name">{messageTo || 'Birthday Star'}</span>
+            </div>
+
+            {senderName && (
+              <div className="card-sender-strip">
+                <span className="card-by-label">BY:</span>
+                <span className="card-sender-name">{senderName}</span>
+              </div>
+            )}
           </div>
 
+          {/* The Actual Birthday Message */}
           <p className="card-message-snippet">
-            {messageBy || 'A heartfelt message from the multiverse...'}
+            {displayMessage}
           </p>
 
           {/* Footer Callout */}

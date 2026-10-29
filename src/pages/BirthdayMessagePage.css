@@ -74,6 +74,12 @@
   gap: 1rem;
 }
 
+.message-parties-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .message-to-badge {
   display: flex;
   align-items: baseline;
@@ -92,6 +98,31 @@
   line-height: 1;
   color: var(--spider-white);
   margin: 0;
+}
+
+.message-from-substrip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 230, 0, 0.1);
+  border: 1px solid var(--spider-yellow);
+  padding: 0.25rem 0.75rem;
+  align-self: flex-start;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.meta-by-label {
+  font-family: var(--font-comic);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--spider-yellow);
+}
+
+.message-sender-name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--spider-white);
 }
 
 /* Message Body */

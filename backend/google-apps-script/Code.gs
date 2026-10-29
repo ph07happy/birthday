@@ -7,10 +7,11 @@
  * LINKED SPREADSHEET:
  * https://docs.google.com/spreadsheets/d/1kM5jbNBRcsduG_bOPzdy35jynOU03MDwFmKGbirVkIw/edit?gid=665137629
  * 
- * EXACT THREE FORM FIELDS SUPPORTED:
+ * FORM FIELDS SUPPORTED:
  * 1. "message to"                          -> Recipient name
- * 2. "message by"                          -> Complete message and sender identification
- * 3. "upload pictures (in .jpg, .png)"     -> One or more uploaded picture links
+ * 2. "message by"                          -> Sender name (who it is from)
+ * 3. "message"                             -> Birthday message content
+ * 4. "upload pictures (in .jpg, .png)"     -> One or more uploaded picture links
  */
 
 var CONFIG = {
@@ -173,9 +174,10 @@ function readFormResponses() {
     }
   }
 
-  // Find column indices matching form fields
+  // Find column indices matching form fields with exact-first priority
   var colMessageTo = findColumnIndex(headerMap, ['messageto', 'to']);
-  var colMessageBy = findColumnIndex(headerMap, ['messageby', 'by', 'message']);
+  var colMessageBy = findColumnIndex(headerMap, ['messageby', 'by', 'sender', 'from']);
+  var colMessage = findColumnIndex(headerMap, ['message', 'birthdaymessage', 'text']);
   var colUploadPictures = findColumnIndex(headerMap, ['uploadpicturesinjpgpng', 'uploadpictures', 'pictures', 'upload']);
   var colTimestamp = findColumnIndex(headerMap, ['timestamp']);
 
@@ -186,13 +188,18 @@ function readFormResponses() {
 
     var messageToVal = colMessageTo !== -1 && row[colMessageTo] !== undefined ? String(row[colMessageTo]).trim() : '';
     var messageByVal = colMessageBy !== -1 && row[colMessageBy] !== undefined ? String(row[colMessageBy]).trim() : '';
+    var messageVal = colMessage !== -1 && row[colMessage] !== undefined ? String(row[colMessage]).trim() : '';
     var rawPictures = colUploadPictures !== -1 && row[colUploadPictures] !== undefined ? String(row[colUploadPictures]).trim() : '';
     var rowTimestamp = colTimestamp !== -1 && row[colTimestamp] ? new Date(row[colTimestamp]).toISOString() : new Date().toISOString();
 
     // Skip empty rows
-    if (!messageToVal && !messageByVal && !rawPictures) {
+    if (!messageToVal && !messageByVal && !messageVal && !rawPictures) {
       continue;
     }
+
+    // Determine final message content and sender
+    var finalMessage = messageVal ? messageVal : messageByVal;
+    var finalSender = messageByVal ? messageByVal : (messageVal ? 'A Multiverse Friend' : '');
 
     // Stable ID: Format response-001, response-002, etc. based on sheet row index
     var stableId = CONFIG.ID_PREFIX + "-" + padZero(r, 3);
@@ -219,7 +226,8 @@ function readFormResponses() {
     responses.push({
       id: stableId,
       messageTo: messageToVal || 'Birthday Hero',
-      messageBy: messageByVal,
+      messageBy: finalSender || 'A Multiverse Friend',
+      message: finalMessage,
       pictures: picturesList,
       timestamp: rowTimestamp,
     });
@@ -229,19 +237,25 @@ function readFormResponses() {
 }
 
 /**
- * Finds column index by trying matching header keys
+ * Finds column index with strict exact match priority
  */
 function findColumnIndex(headerMap, candidateKeys) {
+  // Pass 1: Strict exact match
   for (var i = 0; i < candidateKeys.length; i++) {
     var key = candidateKeys[i];
     if (headerMap[key] !== undefined) {
       return headerMap[key];
     }
   }
-  // Partial substring match
+  // Pass 2: Partial match with boundary protection
   for (var normKey in headerMap) {
     for (var j = 0; j < candidateKeys.length; j++) {
-      if (normKey.indexOf(candidateKeys[j]) !== -1) {
+      var cKey = candidateKeys[j];
+      // Guard against "message" matching "messageby" or "messageto"
+      if (cKey === 'message' && (normKey.indexOf('by') !== -1 || normKey.indexOf('to') !== -1)) {
+        continue;
+      }
+      if (normKey.indexOf(cKey) !== -1 || cKey.indexOf(normKey) !== -1) {
         return headerMap[normKey];
       }
     }
