@@ -1,0 +1,107 @@
+/* Comic Typography & Heading Styles */
+
+.font-comic {
+  font-family: var(--font-comic);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Chromatic Aberration / RGB Split Text Effect */
+.text-glitch {
+  position: relative;
+  display: inline-block;
+  color: var(--spider-white);
+  text-shadow: 
+    -2px -1px 0 var(--spider-red),
+    2px 1px 0 var(--spider-cyan);
+  transition: text-shadow var(--transition-fast);
+}
+
+.text-glitch:hover {
+  text-shadow: 
+    -3px -2px 0 var(--spider-red-glow),
+    3px 2px 0 var(--spider-cyan),
+    0 0 12px var(--spider-cyan-glow);
+}
+
+/* Heavy Comic Title */
+.comic-title {
+  font-family: var(--font-comic);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  color: var(--spider-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 
+    3px 3px 0 var(--spider-border-dark),
+    -2px -2px 0 var(--spider-red),
+    2px 2px 0 var(--spider-cyan);
+  margin: 0;
+}
+
+.comic-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 500;
+  color: var(--spider-muted);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* Onomatopoeia & Sound Effects (BOOM, THWIP, POW) */
+.comic-badge-sfx {
+  display: inline-block;
+  font-family: var(--font-comic);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.75rem;
+  background: var(--spider-yellow);
+  color: #000000;
+  border: 3px solid #000000;
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 #000000;
+  user-select: none;
+}
+
+.comic-badge-sfx.cyan {
+  background: var(--spider-cyan);
+  color: #000000;
+  transform: rotate(2deg);
+}
+
+.comic-badge-sfx.red {
+  background: var(--spider-red);
+  color: #FFFFFF;
+  transform: rotate(-2deg);
+}
+
+.comic-badge-sfx.pink {
+  background: var(--spider-pink);
+  color: #FFFFFF;
+  transform: rotate(3deg);
+}
+
+/* Diagonal Label */
+.comic-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--spider-cyan);
+  border: 1px solid var(--spider-cyan);
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+}

@@ -1,0 +1,143 @@
+/* Comic Book Effects: Halftones, Speed Lines, Borders, Panels */
+
+/* Halftone Ben-Day Dots Pattern */
+.halftone-bg {
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(0, 240, 255, 0.04) 1.5px, transparent 1.5px);
+  background-size: 16px 16px, 24px 24px;
+  background-position: 0 0, 8px 8px;
+}
+
+.halftone-red {
+  background-image: radial-gradient(rgba(229, 37, 33, 0.15) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+.halftone-cyan {
+  background-image: radial-gradient(rgba(0, 240, 255, 0.15) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+/* Comic Panel Base */
+.comic-box {
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: var(--comic-shadow-offset);
+  position: relative;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.comic-box-cyan-glow {
+  box-shadow: 
+    6px 6px 0px #000000,
+    0 0 25px rgba(0, 240, 255, 0.25);
+}
+
+.comic-box-red-glow {
+  box-shadow: 
+    6px 6px 0px #000000,
+    0 0 25px rgba(229, 37, 33, 0.35);
+}
+
+/* Comic Cut Corner / Diagonal Slant */
+.comic-cut {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+}
+
+.comic-cut-top-right {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* Speed Lines Overlay */
+.speed-lines {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(255, 255, 255, 0.015) 40px,
+    rgba(255, 255, 255, 0.015) 42px
+  );
+}
+
+/* Diagonal Stripes */
+.comic-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(229, 37, 33, 0.08),
+    rgba(229, 37, 33, 0.08) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+}
+
+.comic-stripes-cyan {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 240, 255, 0.06),
+    rgba(0, 240, 255, 0.06) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+}
+
+/* Comic Speech Bubble / Callout */
+.comic-speech-bubble {
+  position: relative;
+  background: #FFFFFF;
+  color: #000000;
+  border: 3px solid #000000;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-comic);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0 #000000;
+  display: inline-block;
+}
+
+.comic-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
+  border-width: 12px 10px 0 0;
+  border-style: solid;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+}
+
+.comic-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 18px;
+  border-width: 15px 13px 0 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+  display: block;
+  width: 0;
+}
+
+/* Spider-Verse Glitch Scanline Overlay */
+.glitch-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}

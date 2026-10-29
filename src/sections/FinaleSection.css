@@ -1,0 +1,69 @@
+.spider-finale-root {
+  position: relative;
+  background: #06060A;
+  border-top: 4px solid #000000;
+  padding: 3.5rem 0 2.5rem;
+  overflow: hidden;
+}
+
+.finale-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.finale-sfx-cluster {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.finale-quote-box {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.finale-quote {
+  font-family: var(--font-comic);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.05em;
+  color: var(--spider-white);
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.finale-subtext {
+  font-size: 0.95rem;
+  color: var(--spider-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.heart-icon {
+  color: var(--spider-red);
+  fill: var(--spider-red);
+}
+
+.finale-credits-strip {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-body);
+  letter-spacing: 0.08em;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 640px) {
+  .finale-credits-strip {
+    justify-content: center;
+    text-align: center;
+  }
+}

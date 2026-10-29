@@ -1,0 +1,50 @@
+.memories-locked-container {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.locked-comic-card {
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width-thick) solid #000000;
+  box-shadow: 10px 10px 0px #000000, 0 0 30px rgba(229, 37, 33, 0.3);
+  padding: 3rem 2rem;
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.locked-badge-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.locked-icon-shield {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #251216;
+  border: 3px solid var(--spider-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.locked-heading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 1rem;
+  color: var(--spider-white);
+}
+
+.locked-description {
+  color: var(--spider-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}

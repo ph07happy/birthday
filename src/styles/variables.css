@@ -1,0 +1,51 @@
+:root {
+  /* Spider-Verse Color Palette */
+  --spider-red: #E52521;
+  --spider-red-glow: #FF0055;
+  --spider-blue: #0051FF;
+  --spider-cyan: #00F0FF;
+  --spider-cyan-glow: rgba(0, 240, 255, 0.45);
+  --spider-pink: #FF007F;
+  --spider-yellow: #FFE600;
+  
+  /* Dark Cosmic Backgrounds */
+  --spider-bg: #0A0A10;
+  --spider-dark-panel: #12121E;
+  --spider-dark-elevated: #1A1A2E;
+  --spider-border-dark: #000000;
+  --spider-white: #FFFFFF;
+  --spider-muted: #9BA1B6;
+  --spider-card-border: #222238;
+
+  /* Typography */
+  --font-comic: 'Bangers', 'Impact', cursive, sans-serif;
+  --font-accent: 'Permanent Marker', cursive, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* Comic Effects & Borders */
+  --comic-border-width: 4px;
+  --comic-border-width-thick: 6px;
+  --comic-shadow-offset: 6px 6px 0px #000000;
+  --comic-shadow-cyan: 5px 5px 0px var(--spider-cyan);
+  --comic-shadow-red: 5px 5px 0px var(--spider-red);
+  --comic-shadow-yellow: 5px 5px 0px var(--spider-yellow);
+
+  /* Ben-Day Dots Pattern */
+  --halftone-size: 16px;
+  --halftone-dot-color: rgba(255, 255, 255, 0.05);
+
+  /* Transitions */
+  --ease-comic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-snappy: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 0.15s var(--ease-comic);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Z-Indices */
+  --z-bg: 0;
+  --z-particles: 1;
+  --z-overlay: 2;
+  --z-content: 10;
+  --z-nav: 50;
+  --z-modal: 100;
+  --z-toast: 110;
+}

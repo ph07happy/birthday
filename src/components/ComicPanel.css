@@ -1,0 +1,68 @@
+.comic-panel-container {
+  position: relative;
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: var(--comic-shadow-offset);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.comic-panel-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+}
+
+.comic-panel-halftone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+/* Tag Badge */
+.comic-panel-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  font-family: var(--font-comic);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.75rem;
+  border-left: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+}
+
+.tag-cyan {
+  background: var(--spider-cyan);
+  color: #000000;
+}
+
+.tag-red {
+  background: var(--spider-red);
+  color: #FFFFFF;
+}
+
+.tag-yellow {
+  background: var(--spider-yellow);
+  color: #000000;
+}
+
+/* Accent Borders */
+.comic-panel-accent-cyan {
+  border-color: #000000;
+  outline: 2px solid rgba(0, 240, 255, 0.4);
+}
+
+.comic-panel-accent-red {
+  border-color: #000000;
+  outline: 2px solid rgba(229, 37, 33, 0.4);
+}
+
+.comic-panel-accent-yellow {
+  border-color: #000000;
+  outline: 2px solid rgba(255, 230, 0, 0.4);
+}

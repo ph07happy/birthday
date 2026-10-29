@@ -1,0 +1,46 @@
+.error-state-container {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error-comic-box {
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: 8px 8px 0px #000000;
+  max-width: 540px;
+  width: 100%;
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-icon-circle {
+  width: 68px;
+  height: 68px;
+  background: #251216;
+  border: 3px solid var(--spider-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.error-heading {
+  font-family: var(--font-comic);
+  font-size: 1.7rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.error-description {
+  color: var(--spider-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}

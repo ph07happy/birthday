@@ -1,0 +1,76 @@
+/* Spider-Verse Motion & CSS Keyframe Animations */
+
+@keyframes chromatic-flicker {
+  0% {
+    text-shadow: -2px -1px 0 var(--spider-red), 2px 1px 0 var(--spider-cyan);
+    transform: translate(0, 0);
+  }
+  20% {
+    text-shadow: 2px -1px 0 var(--spider-red), -2px 1px 0 var(--spider-cyan);
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    text-shadow: -1px 2px 0 var(--spider-red), 1px -2px 0 var(--spider-cyan);
+    transform: translate(1px, -1px);
+  }
+  60% {
+    text-shadow: -2px -1px 0 var(--spider-red), 2px 1px 0 var(--spider-cyan);
+    transform: translate(0, 0);
+  }
+  80% {
+    text-shadow: 3px 0 0 var(--spider-red), -3px 0 0 var(--spider-cyan);
+    transform: translate(-1px, 0);
+  }
+  100% {
+    text-shadow: -2px -1px 0 var(--spider-red), 2px 1px 0 var(--spider-cyan);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitch-skew {
+  0%, 100% { transform: skew(0deg); }
+  25% { transform: skew(-1.5deg); }
+  50% { transform: skew(0.5deg); }
+  75% { transform: skew(1.5deg); }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), 5px 5px 0 #000000;
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(229, 37, 33, 0.5), 5px 5px 0 #000000;
+  }
+}
+
+@keyframes web-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, 8px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes badge-wiggle {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  50% { transform: rotate(1deg) scale(1.05); }
+}
+
+.anim-chromatic {
+  animation: chromatic-flicker 4s infinite ease-in-out;
+}
+
+.anim-float {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.anim-glow-pulse {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.anim-badge-wiggle {
+  animation: badge-wiggle 2s ease-in-out infinite;
+}

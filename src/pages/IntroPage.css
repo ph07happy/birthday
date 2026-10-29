@@ -1,0 +1,84 @@
+.spider-intro-page-root {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+}
+
+.intro-badge-wrapper {
+  margin-bottom: 2rem;
+}
+
+.intro-comic-frames {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.intro-comic-strip {
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  padding: 1rem 1.8rem;
+  border-radius: 2px;
+}
+
+.strip-1 {
+  background: #141424;
+  border-color: var(--spider-cyan);
+}
+
+.strip-2 {
+  background: #1D1217;
+  border-color: var(--spider-red);
+}
+
+.strip-3 {
+  background: #0E0E18;
+  border-color: var(--spider-yellow);
+}
+
+.strip-text {
+  font-family: var(--font-comic);
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  letter-spacing: 0.06em;
+  color: var(--spider-white);
+  line-height: 1.1;
+}
+
+.intro-hero-heading {
+  margin-bottom: 2rem;
+}
+
+.intro-title {
+  margin-bottom: 0.75rem;
+}
+
+.intro-name-highlight {
+  color: var(--spider-yellow);
+  text-shadow: 
+    3px 3px 0 var(--spider-red),
+    -2px -2px 0 var(--spider-cyan);
+}
+
+.intro-tagline {
+  color: var(--spider-muted);
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.intro-cta-box {
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,76 @@
+.spider-hero-root {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 0 3rem;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-top-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.hero-title-group {
+  max-width: 960px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-subline {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  letter-spacing: 0.2em;
+  color: var(--spider-cyan);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-main-title {
+  margin-bottom: 1.25rem;
+}
+
+.hero-gradient-text {
+  color: var(--spider-cyan);
+  text-shadow: 
+    3px 3px 0 var(--spider-red),
+    -3px -3px 0 var(--spider-cyan);
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--spider-muted);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.hero-cta-wrapper {
+  margin-top: 1rem;
+}
+
+.hero-diagonal-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--spider-bg);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  border-top: 2px solid rgba(0, 240, 255, 0.2);
+}

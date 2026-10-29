@@ -1,0 +1,181 @@
+.spider-gallery-section {
+  position: relative;
+  padding: 4.5rem 0 5rem;
+}
+
+.gallery-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.gallery-title {
+  margin: 0.4rem 0 0.5rem;
+}
+
+.gallery-subtitle {
+  color: var(--spider-muted);
+  max-width: 600px;
+  font-size: 1.05rem;
+}
+
+.gallery-top-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.gallery-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--spider-muted);
+  pointer-events: none;
+}
+
+.gallery-search-input {
+  background: var(--spider-dark-panel);
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  color: var(--spider-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem 0.6rem 2.4rem;
+  width: 250px;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s, width 0.2s;
+}
+
+.gallery-search-input:focus {
+  border-color: var(--spider-cyan);
+  width: 290px;
+}
+
+/* New Responses Notification Banner */
+.gallery-new-transmissions-banner {
+  background: var(--spider-dark-panel);
+  border: 3px solid var(--spider-yellow);
+  box-shadow: 5px 5px 0 #000000;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.new-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.new-banner-text {
+  font-size: 0.95rem;
+  color: var(--spider-white);
+}
+
+.new-banner-dismiss-btn {
+  font-family: var(--font-comic);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  background: var(--spider-yellow);
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+}
+
+/* Grid of Message Cards */
+.gallery-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Empty State */
+.gallery-empty-state {
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: 6px 6px 0 #000000;
+  padding: 3.5rem 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #141424;
+  border: 2px solid var(--spider-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.empty-title {
+  font-family: var(--font-comic);
+  font-size: 1.75rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.empty-text {
+  color: var(--spider-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.empty-clear-btn {
+  font-family: var(--font-comic);
+  font-size: 1.05rem;
+  color: var(--spider-cyan);
+  border: 1px solid var(--spider-cyan);
+  background: transparent;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+.gallery-footer-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--spider-muted);
+  letter-spacing: 0.08em;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 640px) {
+  .gallery-search-input {
+    width: 100%;
+  }
+  .gallery-search-input:focus {
+    width: 100%;
+  }
+  .gallery-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,34 @@
+/* Responsive Layouts & Breakpoints */
+
+.spider-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.spider-container-narrow {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Mobile Friendly Comic Tweaks */
+@media (max-width: 768px) {
+  :root {
+    --comic-border-width: 3px;
+    --comic-shadow-offset: 4px 4px 0px #000000;
+  }
+
+  .spider-container {
+    padding: 0 1rem;
+  }
+
+  .comic-title {
+    text-shadow: 
+      2px 2px 0 var(--spider-border-dark),
+      -1.5px -1.5px 0 var(--spider-red),
+      1.5px 1.5px 0 var(--spider-cyan);
+  }
+}

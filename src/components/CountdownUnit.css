@@ -1,0 +1,102 @@
+.countdown-unit-card {
+  position: relative;
+  background: var(--spider-dark-panel);
+  border: var(--comic-border-width) solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.countdown-unit-card:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.countdown-unit-inner {
+  position: relative;
+  padding: 1.5rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.countdown-unit-halftone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+.countdown-number-wrapper {
+  position: relative;
+  z-index: 2;
+  height: clamp(3.5rem, 8vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.countdown-number {
+  font-family: var(--font-comic);
+  font-size: clamp(3.2rem, 7.5vw, 5.8rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--spider-white);
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.countdown-label-strip {
+  position: relative;
+  z-index: 2;
+  margin-top: 0.5rem;
+  background: #000000;
+  padding: 0.25rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: skewX(-6deg);
+}
+
+.countdown-label {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--spider-white);
+  display: block;
+  transform: skewX(6deg);
+}
+
+.countdown-accent-line {
+  height: 4px;
+  width: 100%;
+}
+
+.unit-cyan .countdown-accent-line {
+  background: var(--spider-cyan);
+}
+
+.unit-red .countdown-accent-line {
+  background: var(--spider-red);
+}
+
+.unit-yellow .countdown-accent-line {
+  background: var(--spider-yellow);
+}
+
+.unit-pink .countdown-accent-line {
+  background: var(--spider-pink);
+}
+
+@media (max-width: 600px) {
+  .countdown-unit-inner {
+    padding: 0.9rem 0.5rem 0.5rem;
+  }
+}
